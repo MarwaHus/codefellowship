@@ -72,7 +72,38 @@ public class HomeController {
     public String getLogoutPage() {
         return "home.html";
     }
+    @GetMapping("/myprofile")
+    public String getMyProfile(Principal p, Model model){
+        ApplicationUser applicationUser= applicationRepository.findByUsername(p.getName());
+        model.addAttribute("users",applicationUser);
+        List<Post> posts=postRepository.findAllByAppUser(applicationUser);
+        model.addAttribute("posts",posts);
+        return "userprofile";
 
+    }
+    @GetMapping("/users/{id}")
+    public String getUserInfo(Model m, Principal p, @PathVariable Long id)
+    {
+        if (p != null)
+        {
+            String username = p.getName();
+            ApplicationUser applicationUser = applicationRepository.findByUsername(username);
+            m.addAttribute("username", username);
+
+        }
+
+        ApplicationUser applicationUser = applicationRepository.findById(id).orElseThrow();
+        m.addAttribute("Username", applicationUser.getUsername());
+        m.addAttribute("UserId", applicationUser.getId());
+        return "/profile.html";
+    }
+    @GetMapping("/post")
+    public String getPost(Principal p, Model m) {
+        ApplicationUser appUser = applicationRepository.findByUsername(p.getName());
+        List<Post> userPosts=postRepository.findAllByAppUser(appUser);
+        m.addAttribute("posts", userPosts);
+        return "userprofile";
+    }
     private void authWithHttpServletRequest(String username, String password) {
         try {
             request.login(username, password);

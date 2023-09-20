@@ -24,7 +24,8 @@ public class ApplicationUser implements UserDetails {
     private String dateOfBirth;
     private String bio;
     private LocalDateTime createdDate;
-
+    @OneToMany(mappedBy = "appUser")
+    private List<Post> userPosts;
     public ApplicationUser() {
         this.createdDate = LocalDateTime.now();
     }
