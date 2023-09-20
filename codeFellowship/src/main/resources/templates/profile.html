@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" >
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+<header>
+    <div th:replace="/fragments/error-fragment :: dino-error"></div>
+</header>
+    <h1>profile</h1>
+    <div th:each="user:${targetUser}" >
+        <img th:src="@{/img/}">
+        <div>
+            <h5 th:text="${user.username}"></h5>
+            <p th:text="${user.firstName+' '+user.lastName}"></p>
+            <p th:text="${user.dateOfBirth}"></p>
+            <p th:text="${user.bio}"></p>
+
+        </div>
+    </div>
+</body>
+</html>
