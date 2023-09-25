@@ -1,9 +1,8 @@
-package repositories;
+package  com.LAB16.codeFellowship.repositories;
 
-import models.ApplicationUser;
+
+import com.LAB16.codeFellowship.models.ApplicationUser;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 public interface ApplicationRepository extends JpaRepository<ApplicationUser,Long> {
 

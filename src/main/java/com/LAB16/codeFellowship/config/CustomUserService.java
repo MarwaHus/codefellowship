@@ -1,12 +1,15 @@
-package config;
+package  com.LAB16.codeFellowship.config;
 
-import models.ApplicationUser;
+import com.LAB16.codeFellowship.models.ApplicationUser;
+import com.LAB16.codeFellowship.repositories.ApplicationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import repositories.ApplicationRepository;
+
+;
+
 
 @Service
 public class CustomUserService implements UserDetailsService {

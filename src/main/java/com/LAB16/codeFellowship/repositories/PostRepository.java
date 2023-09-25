@@ -1,6 +1,7 @@
-package repositories;
+package  com.LAB16.codeFellowship.repositories;
 
-import models.ApplicationUser;
+
+import com.LAB16.codeFellowship.models.ApplicationUser;
 import models.Post;
 import org.springframework.data.jpa.repository.JpaRepository;
 

@@ -1,4 +1,4 @@
-package models;
+ package  com.LAB16.codeFellowship.models;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
