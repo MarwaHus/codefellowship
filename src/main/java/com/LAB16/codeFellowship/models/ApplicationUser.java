@@ -1,4 +1,5 @@
-package com.LAB16.codeFellowship.models;
+
+package  com.LAB16.codeFellowship.models;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -6,19 +7,18 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.*;
+
 
 @Entity
 public class ApplicationUser implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String username;
     private String password;
     private String firstName;
     private String lastName;
-    private String dateOfBirth;
+    private Date dateOfBirth;
     private String bio;
     private LocalDate createdDate;
     @OneToMany(mappedBy = "appUser")
@@ -35,6 +35,13 @@ public class ApplicationUser implements UserDetails {
     Set<ApplicationUser> usersFollowedBy;
 
     public ApplicationUser(String username, String password, String firstName, String lastName, Date dateOfBirth, String bio, LocalDate createdDate) {
+=======
+
+    public ApplicationUser(){
+
+    }
+
+    public ApplicationUser(String username, String password, String firstName, String lastName, Date dateOfBirth, String bio) {
         this.username = username;
         this.password = password;
         this.firstName = firstName;
@@ -44,49 +51,44 @@ public class ApplicationUser implements UserDetails {
         this.createdDate=createdDate;
     }
 
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        List<GrantedAuthority> authorities = new ArrayList<>();
-        authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
-        return authorities;
+    public Long getId() {
+        return id;
     }
-
-    @Override
-    public String getPassword() {
-        return password;
-    }
-
-    @Override
     public String getUsername() {
         return username;
     }
 
     @Override
     public boolean isAccountNonExpired() {
-        return true;
+        return false;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return true;
+        return false;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return true;
+        return false;
     }
 
     @Override
     public boolean isEnabled() {
-        return true;
+        return false;
     }
-
-    public Long getId() {
-        return id;
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return null;
     }
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+
+    public String getPassword() {
+        return password;
     }
 
     public void setPassword(String password) {
@@ -109,11 +111,11 @@ public class ApplicationUser implements UserDetails {
         this.lastName = lastName;
     }
 
-    public String getDateOfBirth() {
+    public Date getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(String dateOfBirth) {
+    public void setDateOfBirth(Date dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 

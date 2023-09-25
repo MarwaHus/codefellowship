@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 package com.LAB16.codeFellowship.controller;
 
 import com.LAB16.codeFellowship.models.Post;
@@ -5,6 +6,12 @@ import com.LAB16.codeFellowship.repositories.ApplicationRepository;
 
 import com.LAB16.codeFellowship.models.ApplicationUser;
 import com.LAB16.codeFellowship.repositories.PostRepository;
+=======
+package  com.LAB16.codeFellowship.controller;
+
+import com.LAB16.codeFellowship.models.ApplicationUser;
+import com.LAB16.codeFellowship.repositories.ApplicationRepository;
+>>>>>>> a83c82c06b907115e67456009a886ff797797fb8
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -28,6 +35,7 @@ import java.util.Date;
 import java.util.List;
 
 import static org.springframework.data.jpa.domain.AbstractAuditable_.createdDate;
+import java.util.Date;
 
 
 @Controller
@@ -37,6 +45,8 @@ public class HomeController {
     ApplicationRepository applicationRepository;
     @Autowired
     PostRepository postRepository;
+
+
     @Autowired
     PasswordEncoder passwordEncoder;
 
@@ -79,6 +89,10 @@ public class HomeController {
     public RedirectView createUser(String username, String password, String firstName, String lastName, @DateTimeFormat(pattern="yyyy-MM-dd") Date dateOfBirth, String bio, LocalDate createdDate) {
         String encryptedPassword = passwordEncoder.encode(password);
         ApplicationUser appUser = new ApplicationUser(username, encryptedPassword, firstName, lastName, dateOfBirth, bio,createdDate);
+    @PostMapping("/signup")
+    public RedirectView createUser(String username, String password, String firstName, String lastName, @DateTimeFormat(pattern="yyyy-MM-dd") Date dateOfBirth, String bio) {
+        String encryptedPassword = passwordEncoder.encode(password);
+        ApplicationUser appUser = new ApplicationUser(username, encryptedPassword, firstName, lastName, dateOfBirth, bio);
         applicationRepository.save(appUser);
         authWithHttpServletRequest(username, password);
         Authentication authentication = new UsernamePasswordAuthenticationToken(appUser, null, appUser.getAuthorities());
@@ -138,6 +152,16 @@ public class HomeController {
         return "feed";
     }
     private void authWithHttpServletRequest(String username, String password) {
+    @GetMapping("/")
+    public String getHomePage(Principal p, Model m){
+        if(p != null){
+            String username = p.getName();
+            ApplicationUser appUser= applicationRepository.findByUsername(username);
+            m.addAttribute("username", username);
+        }
+        return "home.html";
+    }
+    public void authWithHttpServletRequest(String username, String password) {
         try {
             request.login(username, password);
         } catch (ServletException e) {
