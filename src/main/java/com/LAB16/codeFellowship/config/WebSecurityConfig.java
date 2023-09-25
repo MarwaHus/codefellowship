@@ -1,4 +1,5 @@
-package  com.LAB16.codeFellowship.config;;
+package com.LAB16.codeFellowship.config;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

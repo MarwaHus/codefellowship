@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" >
+<body>
+    <div  th:replace="/fragments/error-fragment :: dino-error"></div>
+    <h1>Profile</h1>
+        <div th:each="user:${users}">
+            <img th:src="@{/img/}" >
+            <div>
+                <h5 th:text="${user.username}" ></h5>
+                <p th:text="${user.firstName}+' '+ ${user.lastName}"></p>
+                <p th:text="${user.dateOfBirth}"></p>
+                <p th:text="${user.bio}"></p>
+            </div>
+            <form action="/post" method="post">
+                <div>
+                    <label >Post</label>
+                    <textarea  type="text"  name="body"rows="3"></textarea>
+                </div>
+                <button type="submit" >Submit</button>
+            </form>
+        </div>
+        <div>
+            <ul th:each="post : ${posts}" >
+                <li >Post :<span th:text="${post.body}"></span></li>
+                <li >Time :<span th:text="${post.createdAt}"></span></li>
+            </ul>
+        </div>
+
+</body>
+</html>

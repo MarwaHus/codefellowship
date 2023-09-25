@@ -1,4 +1,5 @@
-package  com.LAB16.codeFellowship.repositories;
+
+package com.LAB16.codeFellowship.repositories;
 
 
 import com.LAB16.codeFellowship.models.ApplicationUser;

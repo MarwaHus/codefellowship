@@ -1,20 +1,27 @@
+
  package  com.LAB16.codeFellowship.models;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String body;
-    private LocalDateTime createdAt=LocalDateTime.now();
+    private LocalDate createdAt;
+
 
     @ManyToOne
     private ApplicationUser applicationUser;
+
+
+    public Post(String body, ApplicationUser appUser) {
+
+    }
 
 
     public Post() {
@@ -42,21 +49,24 @@ public class Post {
         this.body = body;
     }
 
-    public LocalDateTime getCreatedAt() {
+<<<<<<< HEAD
+    public LocalDate getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
+    public void setCreatedAt(LocalDate createdAt) {
     }
 
     public ApplicationUser getAppUser() {
         return applicationUser;
     }
 
-    public void setAppUser(ApplicationUser applicationUser) {
-        this.applicationUser = applicationUser;
+    public void setAppUser(ApplicationUser appUser) {
+        this.applicationUser = appUser;
     }
+
+}
+
 
     @Override
     public String toString() {
@@ -68,4 +78,5 @@ public class Post {
                 '}';
     }
 }
+
 

@@ -2,6 +2,16 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
+<<<<<<< HEAD
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<h3 th:if="${username != null}" th:text="${'Current user: ' + username + ' and created at ' + createdDate}"></h3>
+<h1>Welcome</h1>
+=======
     <style>
   body {
   font-family: Arial, sans-serif;
@@ -25,10 +35,15 @@ a {
 <body>
 <h3 th:if="${username != null}" th:text="${'Current user: ' + username }"></h3>
 <h1>Welcome!</h1>
+>>>>>>> a83c82c06b907115e67456009a886ff797797fb8
 
 <a th:if="!${username}" href="/login">Log In</a>
 <br>
 <a th:if="!${username}" href="/signup">Or Sign Up</a>
+<<<<<<< HEAD
+<a th:if="${username}" href="/logout">Log Out</a>
+=======
 <a th:if="${username}" href="/login">Log Out</a>
+>>>>>>> a83c82c06b907115e67456009a886ff797797fb8
 </body>
 </html>

@@ -1,3 +1,8 @@
+
+package com.LAB16.codeFellowship.config;
+
+import com.LAB16.codeFellowship.repositories.ApplicationRepository;
+import com.LAB16.codeFellowship.models.ApplicationUser;
 package  com.LAB16.codeFellowship.config;
 
 import com.LAB16.codeFellowship.models.ApplicationUser;
@@ -7,8 +12,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-
-;
 
 
 @Service

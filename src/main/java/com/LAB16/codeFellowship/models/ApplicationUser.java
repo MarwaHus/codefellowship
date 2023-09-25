@@ -1,14 +1,13 @@
+
 package  com.LAB16.codeFellowship.models;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
 import javax.persistence.*;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Date;
-import java.util.List;
+import java.time.LocalDate;
+
 
 @Entity
 public class ApplicationUser implements UserDetails {
@@ -21,6 +20,22 @@ public class ApplicationUser implements UserDetails {
     private String lastName;
     private Date dateOfBirth;
     private String bio;
+    private LocalDate createdDate;
+    @OneToMany(mappedBy = "appUser")
+    private List<Post> userPosts;
+    @ManyToMany
+    @JoinTable(
+            name="user_followers",
+            joinColumns = { @JoinColumn(name = "primaryUser") },
+            inverseJoinColumns = { @JoinColumn(name = "followedUser") }
+    )
+    Set<ApplicationUser> followers;
+
+    @ManyToMany(mappedBy = "followers")
+    Set<ApplicationUser> usersFollowedBy;
+
+    public ApplicationUser(String username, String password, String firstName, String lastName, Date dateOfBirth, String bio, LocalDate createdDate) {
+=======
 
     public ApplicationUser(){
 
@@ -33,6 +48,7 @@ public class ApplicationUser implements UserDetails {
         this.lastName = lastName;
         this.dateOfBirth = dateOfBirth;
         this.bio = bio;
+        this.createdDate=createdDate;
     }
 
     public Long getId() {
@@ -109,5 +125,25 @@ public class ApplicationUser implements UserDetails {
 
     public void setBio(String bio) {
         this.bio = bio;
+    }
+
+    public LocalDate getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(LocalDate createdDate) {
+        this.createdDate = createdDate;
+    }
+
+    public void addFollower(ApplicationUser follower) {
+        followers.add(follower);
+    }
+
+    public void removeFollower(ApplicationUser follower) {
+        followers.remove(follower);
+    }
+
+    public Set<ApplicationUser> getFollowers() {
+        return followers;
     }
 }
